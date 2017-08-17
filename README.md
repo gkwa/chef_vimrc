@@ -1,4 +1,4 @@
-# vimrc
+# chef_vimrc
 
 TODO: Enter the cookbook description here.
 

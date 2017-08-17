@@ -1,1 +1,1 @@
-default['vimrc']['fzfdir'] = "#{ENV['HOME']}/.fzf"
+default['chef_vimrc']['fzfdir'] = "#{ENV['HOME']}/.fzf"

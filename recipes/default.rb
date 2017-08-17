@@ -1,8 +1,8 @@
-include_recipe 'vimrc::packages'
-include_recipe 'vimrc::vim-plug-install'
-include_recipe 'vimrc::vim-fzf-install'
+include_recipe 'chef_vimrc::packages'
+include_recipe 'chef_vimrc::vim-plug-install'
+include_recipe 'chef_vimrc::vim-fzf-install'
 
-template "#{node['vimrc']['vimdir']}/vimrc" do
+template "#{node['chef_vimrc']['vimdir']}/vimrc" do
   source 'vimrc.erb'
 end
 
@@ -23,14 +23,14 @@ plugin 'https://github.com/tpope/vim-unimpaired.git'
 plugin 'https://github.com/vim-airline/vim-airline.git'
 plugin 'https://github.com/vim-scripts/mru.vim.git'
 
-cookbook_file "#{node['vimrc']['plugindir']}/taylor-settings.vim" do
+cookbook_file "#{node['chef_vimrc']['plugindir']}/taylor-settings.vim" do
   source 'taylor-settings.vim'
 end
 
-cookbook_file "#{node['vimrc']['plugindir']}/conway-settings.vim" do
+cookbook_file "#{node['chef_vimrc']['plugindir']}/conway-settings.vim" do
   source 'conway-settings.vim'
 end
 
-cookbook_file "#{node['vimrc']['plugindir']}/wikia.com-settings.vim" do
+cookbook_file "#{node['chef_vimrc']['plugindir']}/wikia.com-settings.vim" do
   source 'wikia.com-settings.vim'
 end
