@@ -1,14 +1,13 @@
 default['vimrc']['basedir'] = ENV['HOME']
-default['vimrc']['fzfdir'] = "#{ENV['HOME']}/.fzf"
 default['vimrc']['vimdir'] = case node['platform']
                              when 'windows'
                                "#{node['vimrc']['basedir']}/vimfiles"
                              else
                                "#{node['vimrc']['basedir']}/.vim"
                              end
+default['vimrc']['plugindir'] = "#{node['vimrc']['vimdir']}/bundle/miscellaneous/plugin"
 default['vimrc']['plugins'] = {
   'https://github.com/dbakker/vim-projectroot.git' => { '' => '' },
-  'https://github.com/junegunn/vim-plug.git' => { '' => '' },
   'https://github.com/tpope/vim-pathogen.git' => { '' => '' },
   'https://github.com/SirVer/ultisnips.git' => { '' => '' },
   'https://github.com/airblade/vim-rooter.git' => { '' => '' },
