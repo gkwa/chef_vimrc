@@ -1,0 +1,10 @@
+" vim-pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+runtime macros/matchit.vim
+execute pathogen#infect()
+
+" vim-plug
+call plug#begin('~/vimfiles/bundle')
+Plug 'junegunn/fzf', { 'dir': '<%= node['vimrc']['fzfdir'] %>', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+call plug#end()
