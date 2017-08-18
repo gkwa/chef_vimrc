@@ -19,7 +19,11 @@ set incsearch
 set hlsearch
 
 set wildmenu
+
+"
 set hidden
+
+" show numbered lines
 set number
 syntax on
 
@@ -47,3 +51,28 @@ command! -nargs=1 -complete=help H :enew | :set buftype=help | :h <args>
 " http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
 " set workng directory to directory of current buffer
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
+
+" https://stackoverflow.com/a/954336/1495086
+" :h filename-modifiers
+nmap cp :let @" = expand("%")
+
+" http://vim.wikia.com/wiki/Open_the_directory_for_the_current_file_in_Windows
+" Open windows explorer on directory for current file
+map <C-e> :silent !explorer %:p:h:gs?\/?\\\\\\?<CR>
+
+" open powershell to current file's directory
+if has("win32")
+  map ,sh :!start cmd /k cd %:p:h<CR>
+else
+  " vim-dispatch provids :Start
+  map ,sh :Start<CR>
+endif
+
+" save and source vim file
+nnoremap <leader>sv :w \| :source %<CR>
+
+"http://vim.wikia.com/wiki/Short_mappings_for_common_tasks
+"For quick recordings just type qq to start recording, then q to stop. You
+"don't have to worry about the name this way (you just named the recording
+"'q'). Now, to play back the recording you just type Q.
+nnoremap Q @q

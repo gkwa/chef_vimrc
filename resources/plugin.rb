@@ -1,7 +1,8 @@
 provides :plugin
 
-property :name, String, name_property: true
-property :settings, String, default: lazy { |r| "#{r.name}-settings.vim" }
+property :url, String, name_property: true
+property :projname, String, default: lazy { |r| r.url.match(%r{(.*\/)+(.*$)})[2].sub('.git', '') }
+property :settings, String, default: lazy { |r| "#{r.projname}-settings.vim" }
 property :cookbook, String
 property :depth, Integer, default: 10
 
@@ -10,11 +11,10 @@ action :create do
     recursive true
   end
 
-  dirname = new_resource.name.match(%r{(.*\/)+(.*$)})[2].sub('.git', '')
-  git dirname do
+  git new_resource.projname do
     depth new_resource.depth
-    destination "#{node['chef_vimrc']['vimdir']}/bundle/#{dirname}"
-    repository new_resource.name
+    destination "#{node['chef_vimrc']['vimdir']}/bundle/#{new_resource.projname}"
+    repository new_resource.url
     action :sync
   end
 
@@ -23,18 +23,18 @@ action :create do
   end
 
   if ::File.exist?("#{new_resource.cookbook}/#{new_resource.settings}")
-    cookbook_file "#{node['chef_vimrc']['plugindir']}/#{new_resourece.name}-settings.vim" do
+    cookbook_file "#{node['chef_vimrc']['plugindir']}/#{new_resource.settings}" do
       source "#{new_resource.cookbook}/#{new_resource.settings}"
     end
   end
 end
 
 action :delete do
-  file "cleanup_#{new_resource.name}" do
-    path "#{node['chef_vimrc']['plugindir']}/#{new_resourece.name}-settings.vim"
+  file "cleanup_#{projname}" do
+    path "#{node['chef_vimrc']['plugindir']}/#{new_resourece.settings}"
     action :delete
-    if ::File.exist?("#{node['chef_vimrc']['plugindir']}/#{new_resource.name}-settings.vim")
-      Chef::Log.warn "Deleted #{new_resource.name}-settings.vim"
+    if ::File.exist?("#{node['chef_vimrc']['plugindir']}/#{new_resource.settngs}")
+      Chef::Log.warn "Deleted #{new_resource.settings}"
     end
   end
 end
