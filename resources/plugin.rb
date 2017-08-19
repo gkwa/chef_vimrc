@@ -22,10 +22,10 @@ action :create do
     recursive true
   end
 
-  if ::File.exist?("#{new_resource.cookbook}/#{new_resource.settings}")
-    cookbook_file "#{node['chef_vimrc']['plugindir']}/#{new_resource.settings}" do
-      source "#{new_resource.cookbook}/#{new_resource.settings}"
-    end
+  cookbook_file "#{node['chef_vimrc']['plugindir']}/#{new_resource.settings}" do
+    cookbook new_resource.cookbook if new_resource.cookbook
+    # TODO: find a better way than ignore_error
+    ignore_failure true
   end
 end
 
