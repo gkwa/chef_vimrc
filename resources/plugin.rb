@@ -30,6 +30,10 @@ action :create do
 end
 
 action :delete do
+  directory "#{node['chef_vimrc']['vimdir']}/bundle/#{new_resource.projname}" do
+    action :delete
+  end
+
   file "cleanup_#{projname}" do
     path "#{node['chef_vimrc']['plugindir']}/#{new_resourece.settings}"
     action :delete
