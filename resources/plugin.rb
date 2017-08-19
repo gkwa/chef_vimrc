@@ -3,7 +3,7 @@ provides :plugin
 property :url, String, name_property: true
 property :projname, String, default: lazy { |r| r.url.match(%r{(.*\/)+(.*$)})[2].sub('.git', '') }
 property :settings, String, default: lazy { |r| "#{r.projname}-settings.vim" }
-property :cookbook, String
+property :cookbook, String, default: 'chef_vimrc'
 property :depth, Integer, default: 10
 
 action :create do
@@ -24,8 +24,10 @@ action :create do
 
   cookbook_file "#{node['chef_vimrc']['plugindir']}/#{new_resource.settings}" do
     cookbook new_resource.cookbook if new_resource.cookbook
-    # TODO: find a better way than ignore_error
-    ignore_failure true
+    only_if {
+      run_context.has_cookbook_file_in_cookbook?(
+        new_resource.cookbook, new_resource.settings)
+    }
   end
 end
 
