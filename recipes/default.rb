@@ -24,6 +24,7 @@ plugin 'https://github.com/vim-airline/vim-airline.git'
 plugin 'https://github.com/vim-scripts/mru.vim.git'
 plugin 'https://github.com/junegunn/vader.vim'
 plugin 'https://github.com/tpope/vim-dispatch.git'
+plugin 'https://github.com/tweekmonster/fzf-filemru.git'
 
 cookbook_file "#{node['chef_vimrc']['plugindir']}/taylor-settings.vim" do
   source 'taylor-settings.vim'
