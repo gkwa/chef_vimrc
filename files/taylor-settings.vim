@@ -76,3 +76,7 @@ nnoremap <leader>sv :w \| :source %<CR>
 "don't have to worry about the name this way (you just named the recording
 "'q'). Now, to play back the recording you just type Q.
 nnoremap Q @q
+
+" https://vi.stackexchange.com/a/7945/12596
+" TODO: how can I make this setting apply only when I'm viewing help files?
+nnoremap <tab> :call search('\v\\|.{-}\\|')<CR>
