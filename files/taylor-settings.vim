@@ -80,3 +80,12 @@ nnoremap Q @q
 " https://vi.stackexchange.com/a/7945/12596
 " TODO: how can I make this setting apply only when I'm viewing help files?
 nnoremap <tab> :call search('\v\\|.{-}\\|')<CR>
+
+" http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
+" As you all may know with 'o' or 'O' you can insert a new line after/before
+" the current line. But both commands enter the insert mode, which may
+" sometimes not be what you want. I put this in my vimrc-file to insert a
+" new-line after the current line by pressing Enter (Shift-Enter for inserting
+" a line before the current line):
+nmap <S-Enter> O<Esc>
+nmap <CR> o<Esc>

@@ -1,6 +1,6 @@
 " http://howivim.com/2016/damian-conway/
 
-nmap <silent> <BS>  :nohlsearch<CR>
+nmap <silent> <BS> :nohlsearch<CR>
 
 set autowrite
 if has('persistent_undo')
