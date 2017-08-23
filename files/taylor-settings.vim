@@ -89,3 +89,8 @@ nnoremap <tab> :call search('\v\\|.{-}\\|')<CR>
 " a line before the current line):
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
+
+" https://bbkane.github.io/2016/12/18/Vim-Color-Schemes.html
+if has('termguicolors') && has('win32')
+  set termguicolors
+endif
