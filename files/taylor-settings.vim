@@ -77,10 +77,6 @@ nnoremap <leader>sv :w \| :source %<CR>
 "'q'). Now, to play back the recording you just type Q.
 nnoremap Q @q
 
-" https://vi.stackexchange.com/a/7945/12596
-" TODO: how can I make this setting apply only when I'm viewing help files?
-nnoremap <tab> :call search('\v\\|.{-}\\|')<CR>
-
 " http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 " As you all may know with 'o' or 'O' you can insert a new line after/before
 " the current line. But both commands enter the insert mode, which may
