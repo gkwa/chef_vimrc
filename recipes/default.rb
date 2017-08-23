@@ -18,7 +18,9 @@ include_recipe 'chef_vimrc::vim-fzf-install'
   end
 end
 
-plugin 'https://github.com/SirVer/ultisnips.git'
+plugin 'https://github.com/SirVer/ultisnips.git' do
+  action :delete
+end
 plugin 'https://github.com/dbakker/vim-projectroot.git'
 plugin 'https://github.com/tpope/vim-pathogen.git'
 plugin 'https://github.com/airblade/vim-rooter.git'
