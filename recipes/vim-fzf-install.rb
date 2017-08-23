@@ -19,4 +19,6 @@ git node['chef_vimrc']['fzfdir'] do
   depth 10
   repository 'https://github.com/junegunn/fzf.git'
   action :sync
+  # protect against cygwin's git:
+  environment 'PATH' => 'C:\Program Files\Git\bin;$env:PATH'
 end

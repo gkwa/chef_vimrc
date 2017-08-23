@@ -20,6 +20,8 @@ action :create do
       destination "#{d}/#{new_resource.projname}"
       repository new_resource.url
       action :sync
+      # protect against cygwin's git:
+      environment 'PATH' => 'C:\Program Files\Git\bin;$env:PATH'
     end
 
     d = node['chef_vimrc'][whichvim]['settingsdir']
