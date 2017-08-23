@@ -1,13 +1,16 @@
+# https://github.com/chef/chef/issues/3215
+# unless platform_family?("mac_os_x")
+
 case node['platform']
 when 'windows'
   include_recipe 'chocolatey'
 
   chocolatey_package 'neovim' do
-    action :upgrade
+    action :upgrade unless platform_family?("mac_os_x")
   end
   chocolatey_package 'git'
   chocolatey_package 'fzf' do
-    action :upgrade
+    action :upgrade unless platform_family?("mac_os_x")
   end
 
   windows_path 'c:\tools\neovim\neovim\bin' do
@@ -15,7 +18,7 @@ when 'windows'
   end
 else
   package 'neovim' do
-    action :upgrade
+    action :upgrade unless platform_family?("mac_os_x")
   end
 end
 
@@ -25,7 +28,7 @@ when 'windows'
 
   chocolatey_package 'git'
   chocolatey_package 'fzf' do
-    action :upgrade
+    action :upgrade unless platform_family?("mac_os_x")
   end
 
   windows_path 'C:\Program Files\Git\bin' do

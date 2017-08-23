@@ -3,8 +3,19 @@ include_recipe 'chef_vimrc::vim-pathogen-install'
 include_recipe 'chef_vimrc::vim-plug-install'
 include_recipe 'chef_vimrc::vim-fzf-install'
 
-template "#{node['chef_vimrc']['vimdir']}/vimrc" do
-  source 'vimrc.erb'
+%W( vim nvim ).each do |whichvim|
+  directory node['chef_vimrc'][whichvim]['basedir'] do
+    recursive true
+  end
+
+  directory node['chef_vimrc'][whichvim]['plugindir'] do
+    recursive true
+  end
+
+  template "#{node['chef_vimrc'][whichvim]['basedir']}/#{node['chef_vimrc'][whichvim]['initfile']}" do
+    source "#{node['chef_vimrc'][whichvim]['initfile']}.erb"
+    variables({'whichvim': whichvim})
+  end
 end
 
 plugin 'https://github.com/SirVer/ultisnips.git'
@@ -27,14 +38,25 @@ plugin 'https://github.com/junegunn/vader.vim'
 plugin 'https://github.com/tpope/vim-dispatch.git'
 plugin 'https://github.com/tweekmonster/fzf-filemru.git'
 
-cookbook_file "#{node['chef_vimrc']['plugindir']}/taylor-settings.vim" do
-  source 'taylor-settings.vim'
-end
+%W( vim nvim ).each do |whichvim|
+  cookbook_file "#{node['chef_vimrc'][whichvim]['settingsdir']}/taylor-settings.vim" do
+    source 'taylor-settings.vim'
+  end
 
-cookbook_file "#{node['chef_vimrc']['plugindir']}/conway-settings.vim" do
-  source 'conway-settings.vim'
-end
+  cookbook_file "#{node['chef_vimrc'][whichvim]['settingsdir']}/netrw-settings.vim" do
+    source 'netrw-settings.vim'
+  end
 
-cookbook_file "#{node['chef_vimrc']['plugindir']}/wikia.com-settings.vim" do
-  source 'wikia.com-settings.vim'
+  cookbook_file "#{node['chef_vimrc'][whichvim]['settingsdir']}/conway-settings.vim" do
+    source 'conway-settings.vim'
+  end
+
+  cookbook_file "#{node['chef_vimrc'][whichvim]['settingsdir']}/wikia.com-settings.vim" do
+    source 'wikia.com-settings.vim'
+  end
+
+  template "#{node['chef_vimrc'][whichvim]['settingsdir']}/ultisnips-settings.vim" do
+    source 'ultisnips-settings.vim.erb'
+		variables({'whichvim': whichvim})
+  end
 end
