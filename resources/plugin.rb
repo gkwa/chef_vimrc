@@ -4,14 +4,20 @@ property :url, String, name_property: true
 property :projname, String, default: lazy { |r| r.url.match(%r{(.*\/)+(.*$)})[2].sub('.git', '') }
 property :settings, String, default: lazy { |r| "#{r.projname}-settings.vim" }
 property :cookbook, String, default: 'chef_vimrc'
-property :depth, Integer, default: 10
+property :depth, Integer, default: 1
 
 action :create do
   %W( vim nvim ).each do |whichvim|
     %W( plugindir settingsdir ).each do |mydir|
       directory node['chef_vimrc'][whichvim][mydir] do
         recursive true
+        not_if { ::Dir.exist?(node['chef_vimrc'][whichvim][mydir]) }
       end
+    end
+
+    template "#{node['chef_vimrc'][whichvim]['basedir']}/#{node['chef_vimrc'][whichvim]['initfile']}" do
+      source "#{node['chef_vimrc'][whichvim]['initfile']}.erb"
+      variables({'whichvim': whichvim})
     end
 
     d = node['chef_vimrc'][whichvim]['plugindir']

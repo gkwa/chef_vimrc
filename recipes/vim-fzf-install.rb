@@ -2,6 +2,7 @@
   %W( basedir plugindir settingsdir).each do |mydir|
     directory node['chef_vimrc'][whichvim][mydir] do
       recursive true
+      not_if { ::Dir.exist?(node['chef_vimrc'][whichvim][mydir]) }
     end
   end
 
@@ -16,7 +17,7 @@ directory node['chef_vimrc']['fzfdir'] do
 end
 
 git node['chef_vimrc']['fzfdir'] do
-  depth 10
+  depth 1
   repository 'https://github.com/junegunn/fzf.git'
   action :sync
   # protect against cygwin's git:
