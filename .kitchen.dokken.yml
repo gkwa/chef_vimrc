@@ -1,33 +1,23 @@
+---
 driver:
   name: dokken
-  privileged: true # because Docker and SystemD/Upstart
-  chef_version: current
+  chef_version: latest
 
 transport:
   name: dokken
 
 provisioner:
   name: dokken
-  deprecations_as_errors: true
 
 verifier:
   name: inspec
 
 platforms:
-- name: ubuntu-16.04
-
+- name: centos-7
   driver:
-    image: ubuntu:16.04
-    pid_one_command: /bin/systemd
-    intermediate_instructions:
-      - RUN /usr/bin/apt-get update
-      - RUN /usr/bin/apt-get install openssl apt-transport-https lsb-release procps net-tools -y
+    image: centos:7
 
 suites:
-- name: default
+  - name: default
     run_list:
-      - recipe[test::default]
-    verifier:
-      inspec_tests:
-        - test/smoke/default
-    attributes:
+    - recipe[test::default]
