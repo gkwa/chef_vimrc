@@ -1,6 +1,3 @@
-default['chef_vimrc']['vim']['initfile'] = 'vimrc'
-default['chef_vimrc']['nvim']['initfile'] = 'init.vim'
-
 default['chef_vimrc']['vim']['homedir'] = ENV['HOME'].tr('\\','/')
 default['chef_vimrc']['nvim']['homedir'] = case node['platform']
                                           when 'windows'
@@ -8,6 +5,8 @@ default['chef_vimrc']['nvim']['homedir'] = case node['platform']
                                           else
                                             "#{ENV['HOME']}/.config".tr('\\','/')
                                           end
+default['chef_vimrc']['vim']['initfile'] = 'vimrc'
+default['chef_vimrc']['nvim']['initfile'] = 'init.vim'
 
 default['chef_vimrc']['vim']['basedir'] = case node['platform']
                                           when 'windows'
