@@ -59,6 +59,6 @@ plugin 'https://github.com/tweekmonster/fzf-filemru.git'
 
   template "#{node['chef_vimrc'][whichvim]['settingsdir']}/ultisnips-settings.vim" do
     source 'ultisnips-settings.vim.erb'
-		variables({'whichvim': whichvim})
+    variables({'whichvim': whichvim})
   end
 end
