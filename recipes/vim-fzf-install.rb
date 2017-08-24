@@ -1,5 +1,5 @@
 %W( vim nvim ).each do |whichvim|
-  %W( basedir plugindir settingsdir).each do |mydir|
+  %W( plugindir settingsdir).each do |mydir|
     directory node['chef_vimrc'][whichvim][mydir] do
       recursive true
       not_if { ::Dir.exist?(node['chef_vimrc'][whichvim][mydir]) }
@@ -21,5 +21,5 @@ git node['chef_vimrc']['fzfdir'] do
   repository 'https://github.com/junegunn/fzf.git'
   action :sync
   # protect against cygwin's git:
-  environment 'PATH' => 'C:\Program Files\Git\bin;$env:PATH'
+  environment 'PATH' => 'C:\Program Files (x86)\Git\bin;C:\Program Files\Git\bin;$env:PATH'
 end
