@@ -1,10 +1,10 @@
-default['chef_vimrc']['vim']['homedir'] = ENV['HOME'].tr('\\','/')
+default['chef_vimrc']['vim']['homedir'] = ENV['HOME']
 default['chef_vimrc']['nvim']['homedir'] = case node['platform']
-                                          when 'windows'
-                                            ENV['LOCALAPPDATA'].tr('\\','/')
-                                          else
-                                            "#{ENV['HOME']}/.config".tr('\\','/')
-                                          end
+                                           when 'windows'
+                                             ENV['LOCALAPPDATA']
+                                           else
+                                             "#{ENV['HOME']}/.config"
+                                           end
 default['chef_vimrc']['vim']['initfile'] = 'vimrc'
 default['chef_vimrc']['nvim']['initfile'] = 'init.vim'
 
@@ -22,3 +22,7 @@ default['chef_vimrc']['nvim']['plugindir'] = "#{node['chef_vimrc']['nvim']['base
 
 default['chef_vimrc']['vim']['settingsdir'] = "#{node['chef_vimrc']['vim']['basedir']}/bundle/miscellaneous/plugin"
 default['chef_vimrc']['nvim']['settingsdir'] = "#{node['chef_vimrc']['nvim']['basedir']}/plugged/miscellaneous/plugin"
+
+# don't edit below
+default['chef_vimrc']['vim']['homedir'] = default['chef_vimrc']['vim']['homedir'].tr('\\','/')
+default['chef_vimrc']['nvim']['homedir'] = default['chef_vimrc']['nvim']['homedir'].tr('\\','/')
