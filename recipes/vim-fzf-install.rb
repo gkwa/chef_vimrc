@@ -5,7 +5,7 @@
     end
   end
 
-  cookbook_file "#{node['chef_vimrc'][whichvim]['settingsdir']}/fzv-settings.vim" do
+  cookbook_file "#{node['chef_vimrc'][whichvim]['settingsdir']}/fzf-settings.vim" do
     source 'fzf-settings.vim'
     backup 10
   end
