@@ -1,14 +1,19 @@
-default['chef_vimrc']['vim']['homedir'] = ENV['HOME']
-default['chef_vimrc']['nvim']['homedir'] = case node['platform']
+default['chef_vimrc']['vim']['homedir'] = case node['platform_family']
+                                          when 'windows'
+                                            ENV['USERPROFILE'].tr('\\','/')
+                                          else
+                                            ENV['HOME'].tr('\\','/')
+                                          end
+default['chef_vimrc']['nvim']['homedir'] = case node['platform_family']
                                            when 'windows'
-                                             ENV['LOCALAPPDATA']
+                                             ENV['LOCALAPPDATA'].tr('\\','/')
                                            else
-                                             "#{ENV['HOME']}/.config"
+                                             "#{ENV['HOME']}/.config".tr('\\','/')
                                            end
 default['chef_vimrc']['vim']['initfile'] = 'vimrc'
 default['chef_vimrc']['nvim']['initfile'] = 'init.vim'
 
-default['chef_vimrc']['vim']['basedir'] = case node['platform']
+default['chef_vimrc']['vim']['basedir'] = case node['platform_family']
                                           when 'windows'
                                             "#{node['chef_vimrc']['vim']['homedir']}/vimfiles"
                                           else
@@ -22,7 +27,3 @@ default['chef_vimrc']['nvim']['plugindir'] = "#{node['chef_vimrc']['nvim']['base
 
 default['chef_vimrc']['vim']['settingsdir'] = "#{node['chef_vimrc']['vim']['basedir']}/bundle/miscellaneous/plugin"
 default['chef_vimrc']['nvim']['settingsdir'] = "#{node['chef_vimrc']['nvim']['basedir']}/plugged/miscellaneous/plugin"
-
-# don't edit below
-default['chef_vimrc']['vim']['homedir'] = default['chef_vimrc']['vim']['homedir'].tr('\\','/')
-default['chef_vimrc']['nvim']['homedir'] = default['chef_vimrc']['nvim']['homedir'].tr('\\','/')

@@ -1,11 +1,9 @@
-inclue_recipe 'chef_vimrc::default'
+include_recipe 'chef_vimrc::default'
 
 plugin 'https://github.com/SirVer/ultisnips.git' do
   action :delete
 end
-plugin 'https://github.com/dbakker/vim-projectroot.git'
 plugin 'https://github.com/tpope/vim-pathogen.git'
-plugin 'https://github.com/airblade/vim-rooter.git'
 plugin 'https://github.com/altercation/vim-colors-solarized.git'
 plugin 'https://github.com/godlygeek/tabular.git'
 plugin 'https://github.com/junegunn/fzf.vim.git'
@@ -41,6 +39,6 @@ plugin 'https://github.com/tweekmonster/fzf-filemru.git'
 
   template "#{node['chef_vimrc'][whichvim]['settingsdir']}/ultisnips-settings.vim" do
     source 'ultisnips-settings.vim.erb'
-		variables({'whichvim': whichvim})
+    variables({'whichvim': whichvim})
   end
 end

@@ -16,6 +16,7 @@ action :create do
     end
 
     template "#{node['chef_vimrc'][whichvim]['basedir']}/#{node['chef_vimrc'][whichvim]['initfile']}" do
+      cookbook new_resource.cookbook if new_resource.cookbook
       source "#{node['chef_vimrc'][whichvim]['initfile']}.erb"
       variables({'whichvim': whichvim})
     end
@@ -27,7 +28,9 @@ action :create do
       repository new_resource.url
       action :sync
       # protect against cygwin's git:
-      environment 'PATH' => 'C:\Program Files (x86)\Git\bin;C:\Program Files\Git\bin;$env:PATH'
+      if node['platform_family'] == 'windows'
+        environment 'PATH' => 'C:\Program Files (x86)\Git\bin;C:\Program Files\Git\bin;$env:PATH'
+      end
     end
 
     d = node['chef_vimrc'][whichvim]['settingsdir']
@@ -50,7 +53,7 @@ action :delete do
     end
 
     d = node['chef_vimrc'][whichvim]['plugindir']
-    file "cleanup_#{projname}" do
+    file "cleanup_#{new_resource.projname}" do
       path "#{d}/#{new_resource.settings}"
       action :delete
       if ::File.exist?("#{d}/#{new_resource.settings}")

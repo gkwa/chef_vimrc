@@ -94,3 +94,12 @@ endif
 " Allow netrw to remove non-empty local directories
 " https://gist.github.com/KevinSjoberg/5068370
 let g:netrw_localrmdir='rm -r'
+
+" https://jeffkreeftmeijer.com/2012/relative-line-numbers-in-vim-for-super-fast-movement/
+:au FocusLost * :set number
+:au FocusGained * :set relativenumber
+
+" http://vim.wikia.com/wiki/Open_file_under_cursor
+" To have a space (ASCII 32) considered as a valid character for a file name,
+" add the following to your vimrc:
+:set isfname+=32

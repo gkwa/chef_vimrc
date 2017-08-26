@@ -37,3 +37,19 @@ when 'windows'
 else
   package 'git'
 end
+
+case node['platform']
+when 'windows'
+  include_recipe 'chocolatey'
+  chocolatey_package 'vim'
+
+  if 'x86_64' == node['kernel']['machine']
+    windows_path 'C:\Program Files (x86)\vim\vim80' do
+      action :add
+    end
+  else
+    windows_path 'C:\Program Files\vim\vim80' do
+      action :add
+    end
+  end
+end
