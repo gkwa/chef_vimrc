@@ -25,4 +25,5 @@ nnoremap <leader>c :Commands<CR>
 " CTRL-N and CTRL-P will be automatically bound to next-history and
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+" CTRL-k and CTRL-j will be automatically bound to up and down
 let g:fzf_history_dir = '~/.local/share/fzf-history'

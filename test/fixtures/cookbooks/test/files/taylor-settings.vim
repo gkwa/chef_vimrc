@@ -1,3 +1,5 @@
+let s:is_windows = has('win16') || has('win32') || has('win64')
+
 " flash screen instead of sounding a beep
 set visualbell
 
@@ -60,9 +62,20 @@ nmap cp :let @" = expand("%")
 " Open windows explorer on directory for current file
 map <C-e> :silent !explorer %:p:h:gs?\/?\\\\\\?<CR>
 
-" open powershell to current file's directory
-if has("win32")
-  map ,sh :!start cmd /k cd %:p:h<CR>
+if s:is_windows
+  " https://github.com/todashuta/.dotfiles/blob/9c08b42823936b9ab8b6c84fb376696c53e15349/.vimrc#L2246
+  command! -bang -complete=file -nargs=? Cmd
+        \ execute 'silent !start cmd.exe /k cd' (<q-args> != ''
+        \   ? <q-args> : (<bang>0 ? expand('%:p:h') : getcwd()))
+  map ,sh :PowerShell<cr>
+  "  map ,sh :!start cmd /k cd %:p:h<CR>
+  "  this breaks Ex somehow
+  "  command! -bang -complete=file -nargs=? Explorer
+  "        \ execute printf('silent !start explorer.exe "%s"', tr((<q-args> != ''
+  "        \   ? <q-args> : (<bang>0 ? expand('%:p:h') : getcwd())), '/', '\'))
+  command! -bang -complete=file -nargs=? PowerShell
+        \ execute printf('silent !start powershell.exe -NoExit -Command "cd ''%s''"',
+        \   (<q-args> != '' ? <q-args> : (<bang>0 ? expand('%:p:h') : getcwd())))
 else
   " vim-dispatch provids :Start
   map ,sh :Start<CR>

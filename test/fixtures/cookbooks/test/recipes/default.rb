@@ -3,6 +3,8 @@ include_recipe 'chef_vimrc::default'
 plugin 'https://github.com/SirVer/ultisnips.git' do
   action :delete
 end
+plugin 'https://github.com/dbakker/vim-projectroot'
+plugin 'https://github.com/fatih/vim-go.git'
 plugin 'https://github.com/tpope/vim-pathogen.git'
 plugin 'https://github.com/altercation/vim-colors-solarized.git'
 plugin 'https://github.com/godlygeek/tabular.git'

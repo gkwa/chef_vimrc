@@ -35,7 +35,7 @@ action :create do
 
     d = node['chef_vimrc'][whichvim]['settingsdir']
     cookbook_file "#{d}/#{new_resource.settings}" do
-      cookbook new_resource.cookbook if new_resource.cookbook
+      cookbook new_resource.cookbook
       only_if {
         run_context.has_cookbook_file_in_cookbook?(
           new_resource.cookbook, new_resource.settings)
