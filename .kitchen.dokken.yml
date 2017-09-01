@@ -1,0 +1,23 @@
+---
+driver:
+  name: dokken
+  chef_version: latest
+
+transport:
+  name: dokken
+
+provisioner:
+  name: dokken
+
+verifier:
+  name: inspec
+
+platforms:
+- name: ubuntu-16.04
+  driver:
+    image: ubuntu-16.0
+
+suites:
+  - name: default
+    run_list:
+    - recipe[test::default]

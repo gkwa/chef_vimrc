@@ -7,6 +7,7 @@ long_description 'Installs/Configures chef_vimrc'
 version '0.1.0'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 supports 'macos'
+supports 'ubuntu'
 supports 'windows'
 issues_url 'https://github.com/taylormonacelli/chef_vimrc/issues'
 source_url 'https://github.com/taylormonacelli/chef_vimrc'
