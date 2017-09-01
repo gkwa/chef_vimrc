@@ -1,4 +1,4 @@
-%W( vim nvim ).each do |whichvim|
+%w(vim nvim).each do |whichvim|
   directory "#{node['chef_vimrc'][whichvim]['basedir']}/autoload" do
     recursive true
   end
