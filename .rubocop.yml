@@ -1,2 +1,10 @@
+Metrics/LineLength:
+  Max: 110
+Layout/TrailingBlankLines:
+  Enabled: no
+Style/PercentLiteralDelimiters:
+  Enabled: no
+Layout/EndOfLine:
+  Enabled: no
 Style/TrailingCommaInLiteral:
   Enabled: no
