@@ -1,8 +1,28 @@
-" vim-pathogen
-execute pathogen#infect("<%= node['chef_vimrc'][@whichvim]['plugindir'] %>/{}")
-
-" vim-plug
-call plug#begin("<%= node['chef_vimrc'][@whichvim]['plugindir'] %>")
-Plug 'junegunn/fzf', { 'dir': '<%= node['chef_vimrc']['fzfdir'] %>', 'do': './install --all' }
+call plug#begin('<%= node['chef_vimrc'][@whichvim]['plugindir'] %>')
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '<%= node['chef_vimrc']['fzfdir'] %>', 'do': './install --all' }
+Plug 'altercation/vim-colors-solarized'
+Plug 'avakhov/vim-yaml'
+Plug 'chr4/nginx.vim'
+Plug 'dbakker/vim-projectroot' | Plug 'TaylorMonacelli/vim-projectroot-settings'
+Plug 'fatih/vim-go'
+Plug 'godlygeek/tabular'
+Plug 'junegunn/vader.vim'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-user'
+Plug 'lacygoill/vim-freekeys'
+Plug 'mileszs/ack.vim'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'scrooloose/nerdcommenter' | Plug 'TaylorMonacelli/nerdcommenter-settings'
+Plug 'TaylorMonacelli/fzf-settings'
+Plug 'TaylorMonacelli/netrw-settings'
+Plug 'TaylorMonacelli/vim-miscellaneous-settings'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tweekmonster/fzf-filemru' | Plug 'TaylorMonacelli/fzf-filemru-settings'
+Plug 'vadv/vim-chef'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-scripts/mru.vim'
+Plug 'vim-syntastic/syntastic'
 call plug#end()
