@@ -82,7 +82,7 @@ when 'amazon'
 when 'debian'
   case node['platform']
   when 'ubuntu'
-    apt_update
+    apt_update 'update'
     directory '/etc/apt/sources.list.d/ppa:neovim-ppa' do
       recursive true
     end
@@ -132,7 +132,7 @@ when 'debian'
   when 'debian'
     package 'vim'
     if node['platform_version'].to_f >= 9.0
-      apt_update
+      apt_update 'update'
       package 'neovim'
     else
       package %w(libtool libtool-bin autoconf automake cmake g++ pkg-config unzip)
