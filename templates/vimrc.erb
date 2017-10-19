@@ -1,6 +1,6 @@
 call plug#begin('<%= node['chef_vimrc'][@whichvim]['plugindir'] %>')
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '<%= node['chef_vimrc']['fzfdir'] %>', 'do': './install --all' }
+Plug 'junegunn/fzf.vim' | Plug 'TaylorMonacelli/fzf-settings'
 Plug 'altercation/vim-colors-solarized'
 Plug 'avakhov/vim-yaml'
 Plug 'chr4/nginx.vim'
@@ -14,7 +14,6 @@ Plug 'lacygoill/vim-freekeys'
 Plug 'mileszs/ack.vim'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'scrooloose/nerdcommenter' | Plug 'TaylorMonacelli/nerdcommenter-settings'
-Plug 'TaylorMonacelli/fzf-settings'
 Plug 'TaylorMonacelli/netrw-settings'
 Plug 'TaylorMonacelli/vim-miscellaneous-settings'
 Plug 'tpope/vim-dispatch'
