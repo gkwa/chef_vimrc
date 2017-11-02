@@ -35,10 +35,5 @@ include_recipe 'chef_vimrc::default'
       command "#{whichvim} silent! +VimEnter +PlugInstall +qall"
       ignore_failure true
     end
-
-    execute "PlugUpdate for #{whichvim}" do
-      command "#{whichvim} silent! +VimEnter +PlugUpdate +qall"
-      ignore_failure true
-    end
   end
 end
