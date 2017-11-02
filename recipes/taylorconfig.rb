@@ -1,6 +1,6 @@
 include_recipe 'chef_vimrc::default'
 
-%w(vim nvim).each do |whichvim|
+%w(nvim vim).each do |whichvim|
   %w(plugindir).each do |mydir|
     directory node['chef_vimrc'][whichvim][mydir] do
       recursive true
