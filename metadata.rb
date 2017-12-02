@@ -11,5 +11,6 @@ supports 'windows'
 issues_url 'https://github.com/taylormonacelli/chef_vimrc/issues'
 source_url 'https://github.com/taylormonacelli/chef_vimrc'
 license 'Apache-2.0'
+
 depends 'chocolatey'
 depends 'windows'

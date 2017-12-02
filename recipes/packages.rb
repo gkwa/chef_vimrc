@@ -107,7 +107,7 @@ when 'debian'
       execute 'make install' do
         cwd build_dir
         command <<-EOC
-				make install
+        make install
         EOC
       end
 
@@ -117,14 +117,14 @@ when 'debian'
         command <<-EOC
         add-apt-repository -y ppa:neovim-ppa/unstable
         apt-get -qqy update
-       EOC
+        EOC
       end
     else
       execute 'add repository' do
         command <<-EOC
         add-apt-repository -y ppa:neovim-ppa/stable
         apt-get -qqy update
-       EOC
+        EOC
       end
     end
     package 'neovim'
@@ -145,7 +145,7 @@ when 'debian'
       execute 'make install' do
         cwd build_dir
         command <<-EOC
-				make install
+        make install
         EOC
       end
     end
