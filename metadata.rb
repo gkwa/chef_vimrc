@@ -14,3 +14,4 @@ license 'Apache-2.0'
 
 depends 'chocolatey'
 depends 'windows'
+depends 'vim'

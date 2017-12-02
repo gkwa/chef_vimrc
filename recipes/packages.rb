@@ -11,21 +11,14 @@ else
   package 'git'
 end
 
+# handle windows later
+include_recipe 'vim' unless Chef::Platform.windows?
+
 case node['platform_family']
 when 'suse'
-  package 'vim-minimal' do
-    action :remove
-  end
-  package 'vim' do
-    action :upgrade
-  end
   package 'neovim'
 
 when 'fedora'
-  package 'vim-minimal' do
-    action :remove
-  end
-
   case node['platform_version'].to_f
   when 0.0..24.99
     execute 'add repository dperson/neovim' do
@@ -33,10 +26,6 @@ when 'fedora'
         dnf -y install 'dnf-command(copr)'
         dnf -y copr enable dperson/neovim
       EOC
-    end
-  when 25.0..999.0
-    package 'vim' do
-      action :upgrade
     end
   end
   package 'neovim'
@@ -87,10 +76,6 @@ when 'debian'
       recursive true
     end
 
-    package 'vim' do
-      action :upgrade
-    end
-
     package 'software-properties-common'
 
     case node['platform_version'].to_f
@@ -130,7 +115,6 @@ when 'debian'
     package 'neovim'
 
   when 'debian'
-    package 'vim'
     if node['platform_version'].to_f >= 9.0
       apt_update 'update'
       package 'neovim'
