@@ -31,9 +31,11 @@ include_recipe 'chef_vimrc::default'
       returns [0, 1]
     end
   else
-    execute "PlugInstall for #{whichvim}" do
-      command "#{whichvim} silent! +VimEnter +PlugInstall +qall"
-      ignore_failure true
+    package 'at'
+    bash "PlugInstall for #{whichvim}" do
+      code <<-EOH
+        echo "#{whichvim} +silent! +VimEnter +PlugInstall +qall" |at -M now + 1 minute
+        EOH
     end
   end
 end
